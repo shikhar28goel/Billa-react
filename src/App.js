@@ -1,23 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Login from './App/Login';
+import Signup from './App/Signup';
+import './App.css'; // Import CSS
 
 function App() {
+  const [page, setPage] = useState('login');
+  const [users, setUsers] = useState([{ username: 'admin', password: '1234' }]);
+  const [loggedInUser, setLoggedInUser] = useState(null);
+
+  const handleLogin = (username, password) => {
+    const user = users.find(u => u.username === username && u.password === password);
+    if (user) {
+      setLoggedInUser(username);
+    } else {
+      alert('Invalid username or password');
+    }
+  };
+
+  const handleSignup = (newUser) => {
+    const exists = users.some(u => u.username === newUser.username);
+    if (exists) {
+      alert('Username already exists!');
+    } else {
+      setUsers([...users, newUser]);
+      setLoggedInUser(newUser.username); // auto-login after signup
+    }
+  };
+
+  const handleLogout = () => {
+    setLoggedInUser(null);
+    setPage('login');
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <div className="card">
+        {loggedInUser ? (
+          <>
+            <h2>Welcome to Dashboard, {loggedInUser}!</h2>
+            <p>This is a protected page.</p>
+            <button onClick={handleLogout}>Logout</button>
+          </>
+        ) : page === 'login' ? (
+          <Login onLogin={handleLogin} onSignupClick={() => setPage('signup')} />
+        ) : (
+          <Signup onSignup={handleSignup} onLoginClick={() => setPage('login')} />
+        )}
+      </div>
     </div>
   );
 }

@@ -36,3 +36,71 @@
     transform: rotate(360deg);
   }
 }
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right, #83a4d4, #b6fbff);
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  background: linear-gradient(to left, #0c56c5, #f3feff);;
+  padding: 50px;
+  border-radius: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  width: 400px;
+}
+
+.username {
+  background: white;
+  width: 300px;
+  height: 30px;
+  padding: 5px;
+  border-radius: 10px;
+  border-color: black;
+  font-size: 14px;
+  border-width: 0.2px;
+  border-color: #282c34;
+}
+
+.password {
+  background: white;
+  width: 300px;
+  height: 30px;
+  padding: 5px;
+  border-radius: 10px;
+  border-color: black;
+  font-size: 14px;
+  border-width: 0.2px;
+  border-color: #282c34;
+}
+
+.login {
+  width: 100px;
+  height: 30px;
+  border-radius: 4px;
+  margin-left: 2px;
+  border-width: 0.2px;
+  border-color: #282c34;
+  background-color: rgb(94, 156, 93);
+  color: white;
+  }
+
+  .signup {
+    width: 100px;
+    height: 30px;
+    border-radius: 4px;
+    margin-left: 2px;
+    border-width: 0.2px;
+    border-color: #282c34;
+    background-color: rgb(23, 38, 173);
+    color: white;
+    }
+
