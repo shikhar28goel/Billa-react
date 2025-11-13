@@ -8,7 +8,10 @@ function App() {
   const [users, setUsers] = useState([{ username: 'admin', password: '1234' }]);
   const [loggedInUser, setLoggedInUser] = useState(null);
 
+  console.log("App","render")
+
   const handleLogin = (username, password) => {
+    
     const user = users.find(u => u.username === username && u.password === password);
     if (user) {
       setLoggedInUser(username);
@@ -34,12 +37,12 @@ function App() {
 
   return (
     <div className="container">
-      <div className="card">
+      <div className={loggedInUser?"":'card'}>
         {loggedInUser ? (
           <>
-            <h2>Welcome to Dashboard, {loggedInUser}!</h2>
-            <p>This is a protected page.</p>
-            <button onClick={handleLogout}>Logout</button>
+            <h1>Welcome to Dashboard, {loggedInUser}!</h1>
+            <p style={{color:'#f0f0f0'}}>This is a protected page.</p>
+            <button style={{width:'100'}} onClick={handleLogout}>Logout</button>
           </>
         ) : page === 'login' ? (
           <Login onLogin={handleLogin} onSignupClick={() => setPage('signup')} />
